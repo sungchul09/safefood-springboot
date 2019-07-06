@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.edu.msg">
+
+	<select id="getMsglist" resultType="com.ssafy.edu.dto.MsgDto">
+		SELECT
+		MSG_CODE, SEND_EMAIL, RECEIVE_EMAIL, CONTENTS, SEND_DATE
+		FROM MSG_LIST ORDER BY MSG_CODE
+	</select>
+
+	<select id="searchMsgByCode" parameterType="java.lang.Integer"
+		resultType="com.ssafy.edu.dto.MsgDto">
+		SELECT
+		MSG_CODE, SEND_EMAIL, RECEIVE_EMAIL, CONTENTS, SEND_DATE
+		FROM MSG_LIST WHERE MSG_CODE=#{msg_code}
+	</select>
+	<select id="searchMsgBySend" parameterType="java.lang.String"
+		resultType="com.ssafy.edu.dto.MsgDto">
+		SELECT
+		MSG_CODE, SEND_EMAIL, RECEIVE_EMAIL, CONTENTS, SEND_DATE
+		FROM MSG_LIST WHERE SEND_EMAIL=#{send_email}
+	</select>
+	<select id="searchMsgByReceive" parameterType="java.lang.String"
+		resultType="com.ssafy.edu.dto.MsgDto">
+		SELECT
+		MSG_CODE, SEND_EMAIL, RECEIVE_EMAIL, CONTENTS, SEND_DATE
+		FROM MSG_LIST WHERE RECEIVE_EMAIL=#{receive_email}
+	</select>
+
+	<select id="deleteMsg" parameterType="java.lang.Integer">
+		DELETE
+		FROM MSG_LIST WHERE MSG_CODE=#{msg_code}
+	</select>
+	
+	<select id="addMsg" parameterType="com.ssafy.edu.dto.MsgDto">
+		INSERT INTO MSG_LIST (SEND_EMAIL, RECEIVE_EMAIL, CONTENTS, SEND_DATE)
+		VALUES (#{send_email},#{receive_email},#{contents},#{send_date})
+	</select>
+</mapper>

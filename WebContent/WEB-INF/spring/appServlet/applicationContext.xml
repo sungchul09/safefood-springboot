@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+<!-- Properties Files -->
+<!-- 여기는 모델쓸 때 사용할거 -->
+	<bean id="propertyConfigurer"
+		  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+			<!-- classpath면 src에 있는거 -->
+				<value>classpath:properties/jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- DataSource Configuration (NSG)-->
+	<!-- 자동으로 세팅해준다. 풀링이 되면 자동으로 dataSource가 된다.  ref가 set자동으로 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}"/>
+		<property name="url" value="${jdbc.url}"/>
+		<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+		<property name="initialSize" value="${jdbc.initialSize}"/>
+		<property name="maxActive" value="${jdbc.maxActive}"/>
+		<property name="minIdle" value="${jdbc.initialSize}"/>
+		<property name="maxWait" value="3000"/>
+		<property name="poolPreparedStatements" value="true"></property>
+		<property name="maxOpenPreparedStatements" value="50"></property>
+	</bean>
+
+<!-- 자동으로 트랜잭션을 걸어줌 -->
+	<!--  TransactionManager를 POJO로 생성한다. -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<property name="dataSource" ref="dataSource"/>
+	</bean>
+ 
+ <!-- 이게 마바티스설정 팩토리패턴으로,, sql매핑해줌. 마바티스는 dto매핑과 sql매핑이 있다. =>dto 만들고 sql만들어야된다. -->
+	<bean id="sqlSessionFactory"  class="org.mybatis.spring.SqlSessionFactoryBean">  
+	<property name="dataSource" ref="dataSource" /> 
+	<property name="mapperLocations"    value="classpath:sqls/*.xml" /> <!-- sql디렉토리에 xml파일에 있다. -->
+	</bean>
+	
+	<!-- dao가 sqlsession.으로 쓸거다. 순서, 그림 외우기 그냥 이렇게 쓰는거다~ template에 알아서 넣어주는거  -->
+	<!-- sql세션은 스프링의 템플릿  -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	<constructor-arg index="0" ref="sqlSessionFactory" />
+	<constructor-arg index="1" value="BATCH" />
+	</bean>
+
+</beans>

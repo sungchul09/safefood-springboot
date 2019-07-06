@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.edu.calendar">
+<insert id="addCalendarContent" parameterType="com.ssafy.edu.dto.CalendarDto">
+	INSERT INTO calendar(email, code, quantity, title, content, wdate) VALUES (#{email}, #{code}, #{quantity}, #{title}, #{content}, #{wdate})
+</insert>
+<select id="getCalendarListByEmail" parameterType="java.lang.String" resultType="com.ssafy.edu.dto.CalendarDto">
+SELECT isbn, email, code, quantity, title, content, wdate FROM calendar WHERE email=#{email} ORDER BY WDATE DESC
+</select>
+
+<select  id="getCalendarListByDate" parameterType="java.lang.String" resultType="com.ssafy.edu.dto.CalendarDto">
+SELECT isbn,email, code, quantity, title, content, wdate FROM calendar WHERE wdate LIKE concat('%',#{wdate},'%')
+</select>
+
+<select  id="getCalendarListByCode" parameterType="java.lang.Integer" resultType="com.ssafy.edu.dto.CalendarDto">
+SELECT isbn,email, code, quantity, title, content, wdate FROM calendar WHERE code = #{code}
+</select>
+
+<select id="searchCalendar" parameterType="com.ssafy.edu.dto.CalendarDto" resultType="com.ssafy.edu.dto.CalendarDto">
+SELECT isbn, email, code, quantity, title, content, wdate FROM calendar WHERE email=#{email} AND code = #{code} AND wdate like concat('%',#{wdate},'%')
+</select>
+
+<select id="searchCalendarList" parameterType="com.ssafy.edu.dto.CalendarDto" resultType="com.ssafy.edu.dto.CalendarDto">
+SELECT isbn, email, code, quantity, title, content, wdate FROM calendar WHERE email=#{email} AND wdate like concat('%',#{wdate},'%')
+</select>
+
+<update id="updateCalendar" parameterType="com.ssafy.edu.dto.CalendarDto">
+UPDATE calendar SET code=#{code}, quantity=#{quantity}, title=#{title}, content=#{content}, wdate=#{wdate} where isbn=#{isbn}
+</update>
+
+<delete id="deleteCalendar" parameterType="java.lang.Integer">
+DELETE FROM calendar WHERE isbn=#{isbn}
+</delete>
+</mapper>

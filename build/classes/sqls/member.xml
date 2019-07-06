@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.edu.member"> 
+
+	<insert id="insertMember"
+	parameterType="com.ssafy.edu.dto.MemberDto">
+		INSERT INTO MEMBER(USERNAME,EMAIL,PASS,PHONENUM,GENDER,TALL) 
+		VALUES(#{username},#{email},#{pass},#{phonenum},#{gender},#{tall})
+	</insert>
+	
+	<update id="updateMember"
+	parameterType="com.ssafy.edu.dto.MemberDto">
+		UPDATE MEMBER SET TALL=#{tall}, PASS=#{pass}, PHONENUM=#{phonenum} WHERE EMAIL=#{email}
+	</update>
+	
+	<select id="findMemberByName"
+	parameterType="java.lang.String"
+	resultType="com.ssafy.edu.dto.MemberDto">
+		SELECT USERNAME,EMAIL,PASS,PHONENUM,GENDER,TALL
+		FROM MEMBER 
+		WHERE USERNAME =#{name}
+	</select>
+	
+	<select id="findMemberByEmail"
+	parameterType="java.lang.String"
+	resultType="com.ssafy.edu.dto.MemberDto">
+		SELECT USERNAME,EMAIL,PASS,PHONENUM,GENDER,TALL
+		FROM MEMBER 
+		WHERE EMAIL =#{email}
+	</select>
+	
+	<select id="findAll"
+	resultType="com.ssafy.edu.dto.MemberDto">
+		SELECT USERNAME,EMAIL,PASS,PHONENUM,GENDER,TALL 
+		FROM MEMBER
+	</select>
+	
+	<select id="checkMember"
+	parameterType="com.ssafy.edu.dto.MemberDto"
+	resultType="com.ssafy.edu.dto.MemberDto">
+		SELECT EMAIL, USERNAME,GENDER,TALL
+		FROM MEMBER
+		WHERE EMAIL=#{email} 
+		AND PASS=#{pass} 
+	</select>
+	<delete id="deleteMember" parameterType="java.lang.String">
+	DELETE FROM member WHERE email=#{email}
+	</delete>
+</mapper>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.edu.food">
+
+	<select id="getFoodlist" resultType="com.ssafy.edu.dto.FoodDto">
+		SELECT
+		CODE,NAME,SUPPORT_PER_EAT,CALORY,CARBO,PROTEIN,FAT,SUGAR,NATRIUM,CHOLE,FATTY_ACID,TRANS_FAT,MAKER,MATERIAL,IMG
+		FROM food_tb ORDER BY CODE
+	</select>
+
+	<select id="getFood" parameterType="java.lang.String"
+		resultType="com.ssafy.edu.dto.FoodDto">
+		SELECT
+		CODE,NAME,SUPPORT_PER_EAT,CALORY,CARBO,PROTEIN,FAT,SUGAR,NATRIUM,CHOLE,FATTY_ACID,TRANS_FAT,MAKER,MATERIAL,IMG
+		FROM food_tb WHERE NAME=#{name}
+
+	</select>
+	<select id="searchFoodByCode" parameterType="java.lang.Integer"
+		resultType="com.ssafy.edu.dto.FoodDto">
+	SELECT
+		CODE,NAME,SUPPORT_PER_EAT,CALORY,CARBO,PROTEIN,FAT,SUGAR,NATRIUM,CHOLE,FATTY_ACID,TRANS_FAT,MAKER,MATERIAL,IMG
+		FROM food_tb WHERE CODE=#{code}
+	</select>
+	<select id="searchFood" parameterType="java.util.Map"
+		resultType="com.ssafy.edu.dto.FoodDto">
+		SELECT
+		CODE,NAME,SUPPORT_PER_EAT,CALORY,CARBO,PROTEIN,FAT,SUGAR,NATRIUM,CHOLE,FATTY_ACID,TRANS_FAT,MAKER,MATERIAL,IMG
+		FROM food_tb WHERE 1=1
+		<if
+			test="searchOption != '' and searchOption != null and searchName != '' and searchName != null">
+			<if test="searchOption == 'name'"> AND NAME LIKE concat('%', #{searchName} ,'%')</if>
+			<if test="searchOption == 'maker'"> AND MAKER like concat('%',#{searchName},'%')</if>
+			<if test="searchOption == 'material'"> AND MATERIAL like concat('%',#{searchName},'%')</if>
+			<if test="searchOption == 'allergy'"> AND MATERIAL like concat('%',#{searchName},'%')</if>
+		</if>
+	</select>
+	<delete id="deleteFood" parameterType="java.lang.Integer">
+		DELETE
+		FROM food_tb WHERE CODE=#{code}
+	</delete>
+	<update id="updateFood" parameterType="com.ssafy.edu.dto.FoodDto">
+		UPDATE food_tb	
+		SET NAME=#{name},SUPPORT_PER_EAT=#{supportpereat},CALORY=#{calory},CARBO=#{carbo},
+		PROTEIN=#{protein},FAT=#{fat},SUGAR=#{sugar},NATRIUM=#{natrium},CHOLE=#{chole},
+		FATTY_ACID=#{fattyacid},TRANS_FAT=#{transfat},MAKER=#{maker},MATERIAL=#{material},IMG=#{img}
+		WHERE CODE=#{code}
+	</update>
+	<insert id="addFood" parameterType="com.ssafy.edu.dto.FoodDto">
+		INSERT INTO food_tb (CODE,NAME,SUPPORT_PER_EAT,CALORY,CARBO,PROTEIN,FAT,SUGAR,NATRIUM,CHOLE,FATTY_ACID,TRANS_FAT,MAKER,MATERIAL,IMG)
+		VALUES (#{code},#{name},#{supportpereat},#{calory},#{carbo},#{protein},#{fat},#{sugar},#{natrium},#{chole},#{fattyacid},#{transfat},#{maker},#{material},#{img})
+	</insert>
+</mapper>

@@ -1,0 +1,22 @@
+<allergies>
+	<item><name>신라면큰사발</name><allergy>소맥분 ( 밀 ), 탈지대두 ( 대두 ), 유당 ( 우유 ), 난각분말 ( 계란 ), 땅콩단백 ( 땅콩 ), 돈골 ( 돼지고기 )</allergy></item>
+	<item><name>진라면컵매운맛</name><allergy>소맥분 ( 밀 ), 탈지대두 ( 대두 ), 유당 ( 우유 ), 난각분말 ( 계란 ), 땅콩단백 ( 땅콩 ), 돈골 ( 돼지고기 )</allergy></item>
+	<item><name>큰컵삼양라면</name><allergy>소맥분 ( 밀 ), 탈지대두 ( 대두 ), 유당 ( 우유 ), 난각분말 ( 계란 ), 땅콩단백 ( 땅콩 ), 돈골 ( 돼지고기 )</allergy></item>
+	<item><name>새우탕큰사발</name><allergy>소맥분 ( 밀 ), 탈지대두 ( 대두 ), 유당 ( 우유 ), 난각분말 ( 계란 ), 땅콩단백 ( 땅콩 ), 돈골 ( 돼지고기 ), 갑각류 ( 새우 )</allergy></item>
+	<item><name>육개장큰사발면</name><allergy>소맥분 ( 밀 ), 탈지대두 ( 대두 ), 유당 ( 우유 ), 난각분말 ( 계란 ), 땅콩단백 ( 땅콩 ), 돈골 ( 돼지고기 )</allergy></item>
+	<item><name>메로나</name><allergy>탈지대두 ( 대두 ), 유당 ( 우유 ), 난각분말 ( 계란 ), 땅콩단백 ( 땅콩 )</allergy></item>
+	<item><name>누크바</name><allergy>탈지대두 ( 대두 ), 유당 ( 우유, 초콜렛 ), 난각분말 ( 계란 ), 땅콩단백 ( 땅콩 )</allergy></item>
+	<item><name>비비빅</name><allergy>탈지대두 ( 대두 ), 유당 ( 우유, 초콜렛 ), 난각분말 ( 계란 ), 단백 ( 콩,팥 )</allergy></item>
+	<item><name>수박바</name><allergy>초코땅콩 ( 땅콩 ), 유당 ( 우유, 초콜렛 )</allergy></item>
+	<item><name>죠스바</name><allergy>탈지대두 ( 대두 ), 유당 ( 우유 ), 난각분말 ( 계란 )</allergy></item>
+	<item><name>서울우유바나나</name><allergy>탈지대두 ( 대두 ), 유당 ( 우유 )</allergy></item>
+	<item><name>맛있는우유GT</name><allergy>유당 ( 우유 )</allergy></item>
+	<item><name>칠성사이다</name><allergy></allergy></item>
+	<item><name>비타500칼슘</name><allergy></allergy></item>
+	<item><name>비타파워</name><allergy></allergy></item>
+	<item><name>칸타타아메리카노</name><allergy></allergy></item>
+	<item><name>칸타타프리미엄라떼</name><allergy> 유당 ( 우유 ),탈지대두 ( 대두 )</allergy></item>
+	<item><name>맥심티오피스위트아메리카노</name><allergy>유당 ( 우유 ),탈지대두 ( 대두 )</allergy></item>
+	<item><name>맥심티오피마스터라떼</name><allergy>유당 ( 우유 ),탈지대두 ( 대두 )</allergy></item>
+	<item><name>아카페라아메리카노</name><allergy></allergy></item>
+</allergies>

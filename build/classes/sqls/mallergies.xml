@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.edu.mallergies">
+	<!-- <insert id="addAllergies" parameterType="com.ssafy.edu.dto.AllergiesDto"> 
+		INSERT INTO allergies(argname,argingredient) VALUES (#{argname},#{argingredient}) 
+		</insert> -->
+	<select id="getMAllergieslist"
+		resultType="com.ssafy.edu.dto.MAllergiesDto">
+		SELECT argname, argingredient FROM mallergies
+	</select>
+	
+	<select id="getMAllergiesByEmail" parameterType="java.lang.String"
+		resultType="java.lang.String">
+		SELECT argname FROM mallergies WHERE
+		email=#{email}
+	</select>
+	
+	<select id="getIngredientByEmail" parameterType="java.lang.String"
+	resultType="java.lang.String">
+	SELECT a.argingredient FROM allergies a JOIN mallergies m ON a.argname=m.argname WHERE m.email=#{email}
+	</select>
+	
+	<insert id="insertMAllergies" parameterType="java.util.Map">
+		INSERT INTO mallergies VALUES(#{email}, #{argname})
+	</insert>
+	<delete id="deleteMAllergies">
+	DELETE FROM mallergies WHERE EMAIL=#{email}
+	</delete>
+</mapper>

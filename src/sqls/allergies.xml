@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.edu.allergies">
+	<!-- <insert id="addAllergies" parameterType="com.ssafy.edu.dto.AllergiesDto"> 
+		INSERT INTO allergies(argname,argingredient) VALUES (#{argname},#{argingredient}) 
+		</insert> -->
+	<select id="getAllergieslist"
+		resultType="com.ssafy.edu.dto.AllergiesDto">
+		SELECT argname, argingredient FROM allergies
+	</select>
+	
+	<select id="getAllergies" parameterType="java.lang.String"
+		resultType="com.ssafy.edu.dto.AllergiesDto">
+		SELECT argname, argingredient FROM allergies WHERE
+		argname=#{argname}
+	</select>
+	
+</mapper>
